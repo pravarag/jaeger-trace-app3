@@ -9,10 +9,11 @@ import json
 app = Flask(__name__)
 tracer = init_tracer('redis-display')
 conn_redis = redis.Redis(host='localhost', port=6379, db=0)
-
+count = 0
 
 @app.route('/display')
 def display_values():
+	global count
 	span_ctx = tracer.extract(Format.HTTP_HEADERS, request.headers)
 	span_tags = {tags.SPAN_KIND: tags.SPAN_KIND_RPC_SERVER}
 
@@ -21,7 +22,7 @@ def display_values():
 		# 			'Food-Ordered':conn_redis.get('item_ordered')}
 		print(type(conn_redis.get('Delivery-Guy')))
 		print(type(conn_redis.get('item_ordered'))) 
-
+		count ++
 		return "hello world"
 
 
