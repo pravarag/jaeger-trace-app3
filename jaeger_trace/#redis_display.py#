@@ -5,8 +5,6 @@ from tracer import init_tracer
 from opentracing.ext import tags
 from opentracing.propagation import Format
 import json
-import requests
-
 
 app = Flask(__name__)
 tracer = init_tracer('redis-display')
@@ -29,10 +27,8 @@ def display_values():
 # request for stored information
 @app.route('/order-info')
 def get_order_info():
-	delivery_guy = requests.args.get('Delivery')
-	retv_details = redis.get('delivery_guy')
+        
 
-	return retv_details
 	
 
 
