@@ -21,8 +21,7 @@ def display_values():
 
 	with tracer.start_active_span('redis-display-span', child_of=span_ctx, tags=span_tags):
 		print(type(conn_redis.get('Delivery-Guy')))
-		print(type(conn_redis.get('item_ordered'))) 
-		count ++
+		print(type(conn_redis.get('item_ordered')))
 		return "hello world"
 
 
