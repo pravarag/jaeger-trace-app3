@@ -6,6 +6,7 @@ from opentracing.ext import tags
 from opentracing.propagation import Format
 import json
 import requests
+import os
 
 
 app = Flask(__name__)
