@@ -12,9 +12,9 @@ import os
 app = Flask(__name__)
 tracer = init_tracer('redis-display')
 redis_host = str(os.getenv('REDIS_HOST'))
-#redis_port = str(os.getenv('REDIS_PORT'))
-init_redis = redis.StrictRedis(host=redis_host, port=6379, db=0)
-
+redis_port = str(os.getenv('REDIS_PORT'))
+conn_redis = redis.StrictRedis(host=redis_host, port=6379, db=0)
+#conn_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 @app.route('/display')
 def display_values():
@@ -25,6 +25,9 @@ def display_values():
 	with tracer.start_active_span('redis-display-span', child_of=span_ctx, tags=span_tags):
 		print(type(conn_redis.get('Delivery-Guy')))
 		print(type(conn_redis.get('item_ordered')))
+		keys = conn_redis.keys()
+		for i in keys
+
 		return "hello world"
 
 
