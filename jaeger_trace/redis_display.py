@@ -14,11 +14,11 @@ from flask import jsonify
 
 app = Flask(__name__)
 tracer = init_tracer('redis-display')
-redis_host = str(os.getenv('REDIS_HOST'))
-redis_port = str(os.getenv('REDIS_PORT'))
-#conn_redis = redis.StrictRedis(host=redis_host, port=6379, db=0)
-conn_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
+redis_host = os.getenv('REDIS_HOST', 'localhost')
+redis_port = os.getenv('REDIS_PORT', '6379')
 
+conn_redis = redis.StrictRedis(host=redis_host, port=int(redis_port, db=0)
+#conn_redis = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 
 @app.route('/display')
